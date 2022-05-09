@@ -6,9 +6,9 @@ namespace StatefulProject.Data
 {
     public class ApplicationUser:IdentityUser
     {
-        [ForeignKey("Student")]
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public virtual Student Student { get; set; }
+        public string FullNameEn { get; set; }
+        public string FullNameAr { get; set; }
+        public DateTime BirthDate { get; set; }
+        public bool Gender { get; set; }
     }
 }
