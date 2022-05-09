@@ -13,5 +13,10 @@
         {
             return context.Departments;
         }
+
+        public void getDepartmentByID()
+        {
+
+        }
     }
 }
