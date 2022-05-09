@@ -7,6 +7,11 @@
         {
             this.context = _context;
         }
+
         //Implement IDepartment Methods.
+        public IEnumerable<Department> getDepartments()
+        {
+            return context.Departments;
+        }
     }
 }
