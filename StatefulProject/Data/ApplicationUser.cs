@@ -9,6 +9,7 @@ namespace StatefulProject.Data
         public string FullNameEn { get; set; }
         public string FullNameAr { get; set; }
         public DateTime BirthDate { get; set; }
-        public bool Gender { get; set; }
+        public int Gender { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

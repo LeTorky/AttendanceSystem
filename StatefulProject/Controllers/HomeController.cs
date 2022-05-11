@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StatefulProject.Models;
 using System.Diagnostics;
-using StatefulProject.Data; 
+using StatefulProject.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace StatefulProject.Controllers
 {
