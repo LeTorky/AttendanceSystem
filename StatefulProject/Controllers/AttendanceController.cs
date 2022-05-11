@@ -17,7 +17,7 @@ namespace attendanceSystem.Controllers
             StudentConc = _StudentConc;
             DepartmentConc = _DepartmentConc;
         }
-        
+
         public IActionResult Index(DateTime date, int selectedDeptID, bool saved)
         {
             //get the absent students of the selected dept
@@ -42,10 +42,16 @@ namespace attendanceSystem.Controllers
         [HttpPost]
         public IActionResult Save(int[] studentsIDs)
         {
-            studentsMock.addAttendedStudents(studentsIDs);
+            StudentConc.addAttendedStudents(studentsIDs, DateTime.Today);
             RedirectToRoute(nameof(Index), new { saved = true });
-            //return RedirectToRoute(nameof(Index), new { saved = true });
-            //return Redirect(nameof(Index));
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Undo(int[] studentsIDs)
+        {
+            StudentConc.undoAttendedStudents(studentsIDs, DateTime.Today);
+            RedirectToRoute(nameof(Index), new { saved = true });
             return Ok();
         }
     }
