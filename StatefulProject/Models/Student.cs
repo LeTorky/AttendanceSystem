@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using StatefulProject.Data;
 
 namespace StatefulProject
 {
@@ -18,11 +19,13 @@ namespace StatefulProject
             StudentAnswers = new HashSet<StudentAnswer>();
             StudentExams = new HashSet<StudentExam>();
             StudentPermissions = new HashSet<StudentPermission>();
+            User = new ApplicationUser();
         }
 
         [Key]
         public int StudentId { get; set; }
         public int StudentStatus { get; set; }
+        [ForeignKey("User")]
         public string Id { get; set; }
         public int? DepartmentId { get; set; }
         public string Address { get; set; }
@@ -51,5 +54,6 @@ namespace StatefulProject
         public virtual ICollection<StudentExam> StudentExams { get; set; }
         [InverseProperty("Student")]
         public virtual ICollection<StudentPermission> StudentPermissions { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

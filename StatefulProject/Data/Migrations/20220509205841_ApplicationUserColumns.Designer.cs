@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StatefulProject.Data;
 
@@ -11,9 +12,10 @@ using StatefulProject.Data;
 namespace StatefulProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509205841_ApplicationUserColumns")]
+    partial class ApplicationUserColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,9 +343,6 @@ namespace StatefulProject.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -353,17 +352,6 @@ namespace StatefulProject.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FullNameAr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullNameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -392,10 +380,14 @@ namespace StatefulProject.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -408,6 +400,8 @@ namespace StatefulProject.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -1388,6 +1382,17 @@ namespace StatefulProject.Data.Migrations
                     b.Navigation("JobProfile");
                 });
 
+            modelBuilder.Entity("StatefulProject.Data.ApplicationUser", b =>
+                {
+                    b.HasOne("StatefulProject.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("StatefulProject.Department", b =>
                 {
                     b.HasOne("StatefulProject.Intake", "Intake")
@@ -1596,12 +1601,6 @@ namespace StatefulProject.Data.Migrations
                     b.HasOne("StatefulProject.Department", "Department")
                         .WithMany("Students")
                         .HasForeignKey("DepartmentId");
-
-                    b.HasOne("StatefulProject.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("Id");
-
-                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Department");
                 });
