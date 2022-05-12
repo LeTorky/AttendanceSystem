@@ -8,7 +8,6 @@ namespace attendanceSystem.Controllers
     public class AttendanceController : Controller
     {
         attendanceViewModel vmodel = new attendanceViewModel();
-        studentsMock studentsMock = new studentsMock();
 
         IStudent StudentConc;
         IDepartment DepartmentConc;
@@ -35,7 +34,7 @@ namespace attendanceSystem.Controllers
             //get the departments for the drop down
             var departments = DepartmentConc.getDepartments();
             //assign the drop down list
-            vmodel.tracks = new SelectList(departments, "Id", "ShortName");
+            vmodel.Departments = new SelectList(departments, "Id", "ShortName");
             return View(vmodel);
         }
 

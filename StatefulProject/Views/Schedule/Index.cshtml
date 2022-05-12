@@ -1,5 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ScheduleViewModel
+
 @{
 }
+
+<div class="alert-primary container-fluid" style="width: 80%; margin: auto; padding: 1em">
+        <h2>Schedule:</h2>
+        <table class="table text-center col-12">
+            <thead>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Date from
+                    </th>
+                    <th>
+                        Date to
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td>
+                         <select asp-items="Model.Departments" asp-for="selectedDeptID" class="form-control">
+                            <option hidden > select a department </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input asp-for="DateFrom" class="form-control">
+                    </td>
+                    <td>
+                        <input asp-for="DateTo" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-primary">Show</button></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        @*<form  class="form-inline">
+            <div class="row">
+                <input asp-for="date" class="form-control w-25">
+                <select asp-items="Model.tracks" asp-for="selectedDeptID" class="form-control w-25">
+                    <option hidden > select a department </option>
+                </select>
+             <input type="submit" value="Show students" class="btn btn-warning  w-25"/>
+             </div>
+        </form>*@
+        
+    </div>

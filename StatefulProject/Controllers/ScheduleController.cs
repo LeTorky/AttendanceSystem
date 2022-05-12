@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StatefulProject.Models.ScheduleViewModel;
 
 namespace StatefulProject.Controllers
 {
     public class ScheduleController : Controller
     {
-        public IActionResult Index()
+        ScheduleViewModel vmodel = new ScheduleViewModel();
+
+        public IActionResult Index(int selectedDeptID)
         {
-            return View();
+
+            return View(vmodel);
         }
     }
 }
