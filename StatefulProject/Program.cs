@@ -14,12 +14,13 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
-        //options.User.
     })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-//adding the custom claims service
+
+// Add custom claims service.
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaims>();
+
 // Inject dependancies of interfaces for controllers.
 builder.Services.AddTransient<IStudent, StudentConc>();
 builder.Services.AddTransient<IDepartment, DepartmentConc>();
