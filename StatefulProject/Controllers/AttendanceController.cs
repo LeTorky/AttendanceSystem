@@ -1,10 +1,12 @@
 ﻿using attendanceSystemStatefulProject.Models.attendanceViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StatefulProject.Data;
 
 namespace attendanceSystem.Controllers
 {
+    [Authorize]
     public class AttendanceController : Controller
     {
         attendanceViewModel vmodel = new attendanceViewModel();

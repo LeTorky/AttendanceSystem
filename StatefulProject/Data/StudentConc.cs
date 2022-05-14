@@ -51,5 +51,15 @@ namespace StatefulProject.Data
         {
             throw new NotImplementedException();
         }
+
+        public void AddStudent(ApplicationUser User)
+        {
+            context.Add(new Student()
+            {
+                Id = User.Id,
+                User = User
+            });
+            context.SaveChanges();
+        }
     }
 }

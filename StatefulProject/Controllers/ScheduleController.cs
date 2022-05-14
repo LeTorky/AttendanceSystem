@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StatefulProject.Models.ScheduleViewModel;
 
 namespace StatefulProject.Controllers
 {
+    [Authorize]
     public class ScheduleController : Controller
     {
         ScheduleViewModel vmodel = new ScheduleViewModel();

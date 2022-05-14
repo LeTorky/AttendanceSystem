@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StatefulProject.Data;
@@ -10,9 +11,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    //options.User.
+})
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
+//adding the custom claims service
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaims>();
 // Inject dependancies of interfaces for controllers.
 builder.Services.AddTransient<IStudent, StudentConc>();
 builder.Services.AddTransient<IDepartment, DepartmentConc>();

@@ -8,5 +8,6 @@
         Student GetStudentByID(int id);
         void addAttendedStudents(IEnumerable<int> students, DateTime date);
         void undoAttendedStudents(IEnumerable<int> students, DateTime date);
+        void AddStudent(ApplicationUser User);
     }
 }
