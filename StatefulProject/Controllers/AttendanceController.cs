@@ -6,7 +6,7 @@ using StatefulProject.Data;
 
 namespace attendanceSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin,Student,ADMIN")]
     public class AttendanceController : Controller
     {
         attendanceViewModel vmodel = new attendanceViewModel();
