@@ -16,6 +16,12 @@ namespace StatefulProject
         public int DepartmentId { get; set; }
         public DateTime ScheduleDate { get; set; }
         public int LectPeriod { get; set; }
+        [NotMapped]
+        public int AddSchedule
+        {
+            get;
+            set;
+        }
 
         [ForeignKey("DepartmentId")]
         [InverseProperty("Schedules")]

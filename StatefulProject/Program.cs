@@ -24,6 +24,7 @@ builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, Applica
 // Inject dependancies of interfaces for controllers.
 builder.Services.AddTransient<IStudent, StudentConc>();
 builder.Services.AddTransient<IDepartment, DepartmentConc>();
+builder.Services.AddTransient<ISchedule, ScheduleConc>();
 
 // Middlewares
 builder.Services.AddControllersWithViews();

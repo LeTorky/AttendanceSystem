@@ -4,6 +4,7 @@
     {
         //Add Department DB method signatures.
         IEnumerable<Department> getDepartments();
+        Department getDepartmentById(int Id);
 
     }
 }

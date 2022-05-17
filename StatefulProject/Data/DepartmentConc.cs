@@ -14,9 +14,9 @@
             return context.Departments;
         }
 
-        public void getDepartmentByID()
+        public Department getDepartmentById(int Id)
         {
-
+            return context.Departments.Where(Dep=>Dep.Id == Id).FirstOrDefault();
         }
     }
 }
